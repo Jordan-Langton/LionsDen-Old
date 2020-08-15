@@ -1,4 +1,4 @@
-export const sideNavbar = {   
+export const sideNavbar = {
     data: {
         test: ''
     },

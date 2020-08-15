@@ -34,7 +34,7 @@
 
 #contentSection {
     z-index: 100;
-    padding: 2%;
+    padding: 2% 3%;
     border-radius: 40px 0 0 40px;
     position: absolute;
     top: 0;
