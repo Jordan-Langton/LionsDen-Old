@@ -43,8 +43,8 @@ createApp({
     DOM_MINIPULATION: false,
   },
   "routes": [
-    {path: '/helloWorld', handler: './views/helloWorld.html', animate: ''},
+    {path: '/StoreFront', handler: './views/store/StoreFront.html', animate: ''},
   ]
 }, () => {
-  Router.route("/helloWorld");
+  Router.route("/StoreFront");
 });
