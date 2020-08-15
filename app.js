@@ -43,8 +43,8 @@ createApp({
     DOM_MINIPULATION: false,
   },
   "routes": [
-    {path: '/helloWorld', handler: './views/helloWorld.html', animate: ''},
+    {path: '/dashboard-orders:uid=false', handler: './admin/ordersDashBoard.html', animate: ''},
   ]
 }, () => {
-  Router.route("/helloWorld");
+  Router.route("/dashboard-orders");
 });
