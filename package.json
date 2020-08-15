@@ -1,0 +1,39 @@
+{
+  "name": "@jordan_langton/activejs-framework",
+  "version": "1.0.0",
+  "description": "ActiveJS is a reactive front end Javasrcipt application framework built to make your life a whole lot easier when building a user interface. It takes away all the nity grity parts of development, and allows you to play around with the funs parts of developing!",
+  "main": "./app.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server --history-api-fallback",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PostmanPat123/activeJS.git"
+  },
+  "keywords": [
+    "ActiveJS"
+  ],
+  "author": "Jordan Langton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PostmanPat123/activeJS/issues"
+  },
+  "homepage": "https://github.com/PostmanPat123/activeJS#readme",
+  "dependencies": {
+    "@jordan_langton/activejs": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "jest": "^24.9.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

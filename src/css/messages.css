@@ -1,0 +1,67 @@
+@keyframes showSystemErr {
+
+  0% {
+    bottom: -100%;
+  }
+
+  70% {
+    bottom: 10%;
+  }
+
+  100% {
+    bottom: 0;
+  }
+
+}
+
+/** ========= System Error Wrapper ========= **/
+#systemErrPopupWrapper {
+  z-index: 1000;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/** ========= System Error Model ========= **/
+[id*="systemErrModel-"] {
+  width: 95%;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  animation-name: showSystemErr;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+}
+[id*="systemErrModel-"] .systemErrIcon {
+  width: 5%;
+  height: 100%;
+}
+[id*="systemErrModel-"] .systemErrIcon.left {
+  border-radius: 10px 0 0 10px;
+}
+[id*="systemErrModel-"] .systemErrIcon.right {
+  border-radius: 0 10px 10px 0;
+}
+[id*="systemErrModel-"] .systemErrContent {
+  width: 95%;
+  padding: 10px;
+  text-align: left;
+}
+
+/** ========= System InnerHTML Icon ========= **/
+
+#systemErrWarnIcon {
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  font-size: 10px;
+  margin-left: 25px;
+  border-radius: 50%;
+  background-color: red;
+}
