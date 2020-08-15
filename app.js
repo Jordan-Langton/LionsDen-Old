@@ -7,6 +7,7 @@ const systemStyles = [
   './src/css/anamations.css',
   './src/css/views.css',
   './src/css/fonts.css',
+  './src/css/global.css',
 ];
 
 //* custom components css files

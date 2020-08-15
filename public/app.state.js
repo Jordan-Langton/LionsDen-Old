@@ -1,8 +1,18 @@
+
+
 export default {
 
-  "model": {},
-  "getters": {},
-  "mutations": {},
-  "actions": {},
+  "model": {
+    
+  },
+  "getters": {
+    
+  },
+  "mutations": {
+
+  },
+  "actions": {
+    
+  },
 
 };

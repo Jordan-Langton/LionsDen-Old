@@ -1,19 +1,49 @@
 <template>
-    <div class="wrapper">{{heading}}</div>
+
+    <!-- side nav -->
+    <div id="sideNavBar" class="bg-darkbrown d-flex flex-col flex-even">
+        <div class="logoWrapper icon-30-p"><img src="./src/images/lionsDenLogo.png" class="img-100-p"></div>
+        <div class="navItemsWrapper d-flex flex-col">
+            <div class="nav-item text-white"><i class="text-secondary text-shadow-lg fas fa-boxes"></i></div>
+            <div class="nav-item text-white"><i class="text-shadow-lg fas fa-box"></i></i></div>
+        </div>
+    </div>
+
+    <!-- content section -->
+    <div id="contentSection" class="bg-white shadow-md">
+        <div class="header text-xl-bold">{{contentheading}}</div>
+        <div class="orders">
+            
+        </div>
+    </div>
+
 </template>
   
   <script>
-    ActiveJS.newController('defaultView', {
+      const State = ActiveJS.State;
+    ActiveJS.newController('ordersDashboard', {
       el: "#app",
       Data() {
         return {
-          heading: "Hello World",
+            contentheading: "Hello World",
         }
       },
+      _Mounted() {
+
+      },
+      methods: {
+        
+      }
     });
   </script>
   
   <style>
-    
+    #ordersDashboard {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        position: relative;
+    }
   </style>
   
