@@ -17,11 +17,11 @@
         </div>
 
         <div id="landingPageContentWrapper">
+            <img id="megatron" src="src/images/content/slicedBeefBiltong.png"/>
+           
+           
             <img id="mediaSecondary" src="src/images/content/landingMediaSecondary.jpg"/>
 
-            <h1 id="megatron">
-                SLICED BEEF BILTONG
-            </h1>
 
             <button id="browse">
                 BROWSE
@@ -64,6 +64,7 @@ ActiveJS.newController('storeFront', {
     height: 35px;
 
     position: relative;
+    z-index: 1;
 }
 
 #mainWrapper #navWrapper #brandWrapper
@@ -113,22 +114,49 @@ ActiveJS.newController('storeFront', {
 
 #mainWrapper #landingPageContentWrapper
 {
+    height: calc(100vh - 35px);
+}
 
+#mainWrapper #landingPageContentWrapper #megatron
+{
+    margin: 205px auto 0 auto;
+
+    width: 160px;
+
+    display: block;
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #mediaSecondary
 {
-    width: 300px;
+    width: 349px;
+
+    position: absolute;
+
+    margin:     -206px 0 0 -172px;
+    opacity:    0.7;
+    transform:  rotate(-128deg);
+
+    display: block;
+
+    z-index: 0;
+}
+
+#mainWrapper #landingPageContentWrapper #browse
+{
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #mediaPrimary
 {
     width: 300px;
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #promotionSlider
 {
     width: 50px;
+    position: absolute;
 }
 
 </style>
