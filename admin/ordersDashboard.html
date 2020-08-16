@@ -1,0 +1,116 @@
+<template>
+
+    <!-- side nav -->
+    <div id="sideNavBar" class="bg-darkbrown d-flex flex-col flex-even">
+        <div class="logoWrapper icon-30-p"><img src="./src/images/lionsDenLogo.png" class="img-100-p"></div>
+        <div class="navItemsWrapper d-flex flex-col">
+            <div class="nav-item text-white"><i class="text-secondary text-shadow-lg fas fa-boxes"></i></div>
+            <div class="nav-item text-white"><i class="text-shadow-lg fas fa-box"></i></i></div>
+        </div>
+    </div>
+
+    <!-- content section -->
+    <div id="contentSection" class="bg-white shadow-md">
+        <div class="header text-xl-bold">{{contentheading}}</div>
+        <div class="ordersWrapper">
+            <div class="liveOrderHeader d-flex flex-align flex-even">
+                <div class="item uid text-sm-bold">UID</div>
+                <div class="item name text-sm-bold">USERNAME</div>
+                <div class="item phone text-sm-bold">PHONE</div>
+                <div class="item notes text-sm-bold">NOTES</div>
+                <div class="item unit text-sm-bold">UNIT NUMBER</div>
+                <div class="item total text-sm-bold">ORDER TOTAL</div>
+                <div class="item status text-sm-bold">STATUS</div>
+            </div>
+            <div id="order-[i]" class="liveOrder border-info shadow-xs d-flex flex-align flex-even" @for="order in orders" :key="i">
+                <div class="item uid text-sm" @on:click="showModelForOrder([i])">[order.orderUId]</div>
+                <div class="item name text-sm">[order.user]</div>
+                <div class="item phone text-sm">[order.phone]</div>
+                <div class="item notes text-sm">[order.notes]</div>
+                <div class="item unit text-sm">[order.unitNumber]</div>
+                <div class="item total text-sm">[order.orderTotal]</div>
+                <div class="item status text-sm">[order.status]</div>
+            </div>
+        </div>
+    </div>
+
+</template>
+  
+  <script>
+      const State = ActiveJS.State;
+    ActiveJS.newController('ordersDashboard', {
+      el: "#app",
+      Data() {
+        return {
+            contentheading: "Live Orders",
+            orders: [],
+        }
+      },
+      _Mounted() {
+        this.orders = State.Get("getLiveOrders");
+      },
+      methods: {
+        showModelForOrder(orderIndex) {
+            
+        }
+      }
+    });
+  </script>
+  
+  <style>
+    #ordersDashboard {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        position: relative;
+    }
+
+    #ordersDashboard .ordersWrapper {
+        width: 100%;
+        height: 90%;
+        margin-top: 5%;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrderHeader {
+        width: 100%;
+        padding: 1%;
+        margin-bottom: 15px;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder {
+        width: 100%;
+        padding: 20px 1%;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border-left-width: 3px;
+        border-left-style: solid;
+    }
+
+    .item {
+        
+    }
+
+    .item.uid {
+        width: 5%;
+    }
+    .item.name {
+        width: 20%;
+    }
+    .item.phone {
+        width: 10%;
+    }
+    .item.notes {
+        width: 20%;
+    }
+    .item.unit {
+        width: 20%;
+    }
+    .item.total {
+        width: 10%;
+    }
+    .item.status {
+        width: 5%;
+    }
+  </style>
+  
