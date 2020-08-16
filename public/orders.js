@@ -59,34 +59,29 @@ export default {
         ],
     },
     "getters": {
-        getLiveOrders({
-            $model
-        }) {
+        getLiveOrders({$model}) {
             return $model.orders;
         }
     },
     "mutations": {
-        loadOrdersIntoState({
-            $model
-        }, payload) {
-
-        },
-        starOrder({
-            $model
-        }, payload) {
+        loadOrdersIntoState({$model}, payload) {},
+        starOrder({$model}, payload) {
             $model.orders.forEach(order => {
                 if (order.orderUId == payload.uid) {
                     order.stared = payload.value;
                 }
             });
-        }
+        },
+        saveOrderNotes({$model}, payload) {
+            $model.orders.forEach(order => {
+                if (order.orderUId == payload.uid) {
+                    order.notes = payload.note;
+                }
+            });
+        },
     },
     "actions": {
-        getLiveOrdersFromServer({
-            Commit
-        }, payload, callback) {
-
-        }
+        getLiveOrdersFromServer({Commit}, payload, callback) {}
     },
 
 };

@@ -37,7 +37,7 @@
                         <div class="subheading text-xs text-muted">[order.phone]</div>
                     </div>
                     <div class="content d-flex flex-col">
-                        <div class="orderNotes"><textarea class="bg-light text-xs">[order.notes]</textarea></div>
+                        <div class="orderNotes"><textarea @on:input="saveOrderNotes([i], this.value)" class="bg-light text-xs">[order.notes]</textarea></div>
                         <div class="totals">
                             <div class="heading text-sm-bold">Order Total</div>
                             <div class="subheading text-sm text-muted">R[order.orderTotal]</div>
@@ -65,6 +65,7 @@
       el: "#app",
       Data() {
         return {
+            autoSaveTimeOut: false,
             contentheading: "Live Orders",
             orders: [],
         }
@@ -74,6 +75,13 @@
         this.orderByStared(State.Get("getLiveOrders"));
       },
       methods: {
+        saveOrderNotes(orderIndex, value) {
+            clearTimeout(this.autoSaveTimeOut);
+            this.autoSaveTimeOut = setTimeout(() => {
+                let orderUId = this.orders[orderIndex].orderUId;
+                State.Commit("saveOrderNotes", {uid: orderUId, note: value});
+            }, 500);
+        },
         starOrder(orderIndex, value) {
             let orderUId = this.orders[orderIndex].orderUId;
             let val = false;            
