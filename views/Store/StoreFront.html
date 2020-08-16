@@ -4,10 +4,10 @@
             <div id="brandWrapper" class="d-flex flex-row flex-align">
                 <img id="logo" src="src/images/content/logo.png"/>
 
-                <p>Lion's Den Biltong</p>
+                <p id="brandName" class="font-SegoeUI">Lion's Den Biltong</p>
             </div>
 
-            <div id="nav" class="d-flex flex-row">
+            <div id="nav" class="d-flex flex-row flex-end">
                 <div class="navIcon" style='background-image: url("src/images/content/icons/logout.png")'></div>
 
                 <div class="navIcon" style='background-image: url("src/images/content/icons/user.png")'></div>
@@ -17,11 +17,11 @@
         </div>
 
         <div id="landingPageContentWrapper">
+            <img id="megatron" src="src/images/content/slicedBeefBiltong.png"/>
+           
+           
             <img id="mediaSecondary" src="src/images/content/landingMediaSecondary.jpg"/>
 
-            <h1 id="megatron">
-                SLICED BEEF BILTONG
-            </h1>
 
             <button id="browse">
                 BROWSE
@@ -51,6 +51,8 @@ ActiveJS.newController('storeFront', {
 </script>
   
 <style>
+
+
 #mainWrapper
 {
     height: 100%;
@@ -59,50 +61,102 @@ ActiveJS.newController('storeFront', {
 #mainWrapper #navWrapper
 {
     width:  100%;
-    height: 55px;
+    height: 35px;
 
+    position: relative;
+    z-index: 1;
 }
 
 #mainWrapper #navWrapper #brandWrapper
 {
-
+    flex-basis: 50%;
 }
 
 #mainWrapper #navWrapper #brandWrapper #logo
 {
-    width:  38px;
-    height: 38px;
+    width: 24px;
+    margin-left: 10px;
+}
+
+#mainWrapper #navWrapper #brandWrapper #brandName
+{
+    font-size:      10px;
+    font-weight:    700;
+
+    margin-top:     -2px;
+    margin-left:    6px;
+
 }
 
 #mainWrapper #navWrapper #nav
 {
-
+    flex-basis: 50%;
 }
 
 #mainWrapper #navWrapper #nav .navIcon
 {
-    width:  24px;
-    height: 24px;
+    width:  15px;
+    height: 15px;
+
+    background-size:    100%;
+    background-repeat:  no-repeat;
+}
+
+#mainWrapper #navWrapper #nav .navIcon:nth-child(2)
+{
+    margin: 0 16px;
+}
+
+#mainWrapper #navWrapper #nav .navIcon:nth-child(3)
+{
+    margin-right: 10px;
 }
 
 #mainWrapper #landingPageContentWrapper
 {
+    height: calc(100vh - 35px);
+}
 
+#mainWrapper #landingPageContentWrapper #megatron
+{
+    margin: 205px auto 0 auto;
+
+    width: 160px;
+
+    display: block;
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #mediaSecondary
 {
-    width: 300px;
+    width: 349px;
+
+    position: absolute;
+
+    margin:     -206px 0 0 -172px;
+    opacity:    0.7;
+    transform:  rotate(-128deg);
+
+    display: block;
+
+    z-index: 0;
+}
+
+#mainWrapper #landingPageContentWrapper #browse
+{
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #mediaPrimary
 {
     width: 300px;
+    position: absolute;
 }
 
 #mainWrapper #landingPageContentWrapper #promotionSlider
 {
     width: 50px;
+    position: absolute;
 }
 
 </style>
