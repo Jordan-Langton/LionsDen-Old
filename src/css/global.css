@@ -30,12 +30,20 @@
     margin-bottom: 30%;
 }
 
+#sideNavBar .profile {
+    height: 10%;
+    margin-left: 18%;
+    font-size: 30px;
+}
+
 /** ========== Content Section ========== **/
 
 #contentSection {
     z-index: 100;
     padding: 2% 3%;
     border-radius: 40px 0 0 40px;
+    overflow-y: scroll;
+
     position: absolute;
     top: 0;
     right: 0;

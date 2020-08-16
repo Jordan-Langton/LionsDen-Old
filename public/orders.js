@@ -9,6 +9,7 @@ export default {
                 unitNumber: '1',
                 orderTotal: '298.94',
                 status: '1',
+                stared: false,
                 address: 'Rosebank Mall, Cradock Avenue, Rosebank'
             },
             {
@@ -19,6 +20,7 @@ export default {
                 unitNumber: '21',
                 orderTotal: '298.94',
                 status: '1',
+                stared: true,
                 address: 'Rosebank Mall, Cradock Avenue, Rosebank'
             },
             {
@@ -29,6 +31,7 @@ export default {
                 unitNumber: '43',
                 orderTotal: '298.94',
                 status: '1',
+                stared: false,
                 address: 'Rosebank Mall, Cradock Avenue, Rosebank'
             },
             {
@@ -39,6 +42,7 @@ export default {
                 unitNumber: '32',
                 orderTotal: '298.94',
                 status: '1',
+                stared: true,
                 address: 'Rosebank Mall, Cradock Avenue, Rosebank'
             },
             {
@@ -49,6 +53,7 @@ export default {
                 unitNumber: '55',
                 orderTotal: '298.94',
                 status: '1',
+                stared: false,
                 address: 'Rosebank Mall, Cradock Avenue, Rosebank'
             },
         ],
@@ -65,6 +70,15 @@ export default {
             $model
         }, payload) {
 
+        },
+        starOrder({
+            $model
+        }, payload) {
+            $model.orders.forEach(order => {
+                if (order.orderUId == payload.uid) {
+                    order.stared = payload.value;
+                }
+            });
         }
     },
     "actions": {

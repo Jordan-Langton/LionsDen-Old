@@ -4,40 +4,63 @@
     <div id="sideNavBar" class="bg-darkbrown d-flex flex-col flex-even">
         <div class="logoWrapper icon-30-p"><img src="./src/images/lionsDenLogo.png" class="img-100-p"></div>
         <div class="navItemsWrapper d-flex flex-col">
-            <div class="nav-item text-white"><i class="text-secondary text-shadow-lg fas fa-boxes"></i></div>
-            <div class="nav-item text-white"><i class="text-shadow-lg fas fa-box"></i></i></div>
+            <div class="nav-item text-white">
+                <i @on:click="navbarRoute(/dashboard-orders)" class="text-secondary text-shadow-lg fas fa-boxes"></i>
+            </div>
+            <div class="nav-item text-white">
+                <i @on:click="navbarRoute(/dashboard-users)" class="text-shadow-lg fas fa-box"></i></i>
+            </div>
         </div>
+        <div @on:click="logouUser()" class="profile d-flex text-white"><i class="fas fa-sign-out-alt"></i></div>
     </div>
 
     <!-- content section -->
-    <div id="contentSection" class="bg-white shadow-md">
+    <div id="contentSection" class="bg-light shadow-md">
         <div class="header text-xl-bold">{{contentheading}}</div>
-        <div class="ordersWrapper">
-            <div class="liveOrderHeader d-flex flex-align flex-even">
-                <div class="item uid text-sm-bold">UID</div>
-                <div class="item name text-sm-bold">USERNAME</div>
-                <div class="item phone text-sm-bold">PHONE</div>
-                <div class="item notes text-sm-bold">NOTES</div>
-                <div class="item unit text-sm-bold">UNIT NUMBER</div>
-                <div class="item total text-sm-bold">ORDER TOTAL</div>
-                <div class="item status text-sm-bold">STATUS</div>
-            </div>
-            <div id="order-[i]" class="liveOrder border-info shadow-xs d-flex flex-align flex-even" @for="order in orders" :key="i">
-                <div class="item uid text-sm" @on:click="showModelForOrder([i])">[order.orderUId]</div>
-                <div class="item name text-sm">[order.user]</div>
-                <div class="item phone text-sm">[order.phone]</div>
-                <div class="item notes text-sm">[order.notes]</div>
-                <div class="item unit text-sm">[order.unitNumber]</div>
-                <div class="item total text-sm">[order.orderTotal]</div>
-                <div class="item status text-sm">[order.status]</div>
+        <div class="ordersWrapper d-flex flex-center flex-wrap">
+            <div id="order-[i]" class="liveOrder bg-white border-info shadow-xs d-flex flex-col flex-even" @for="order in orders" :key="i">
+                <div class="other d-flex flex-between flex-align">
+                    <div class="orderUId text-white bg-info text-sm shadow-xs">#[order.orderUId]</div>
+                    <div class="status bg-secondary"></div>
+                </div>
+                <div class="actionTab d-flex flex-between flex-align">
+                    <div class="dateTime text-sm text-muted">8/16/2020 10:27 AM</div>
+                    <div class="actions d-flex flex-between flex-align">
+                        <div @on:click="starOrder([i], false)" @if="[order.stared]" class="starOrder text-warning"><i class="fas fa-star"></i></div>
+                        <div @on:click="starOrder([i], true)" @else class="starOrder"><i class="far fa-star"></i></div>
+                        <div class="editOrder text-success"><i class="far fa-edit"></i></div>
+                    </div>
+                </div>
+                <div class="orderContent">
+                    <div class="header">
+                        <div class="heading text-sm-bold">[order.user]</div>
+                        <div class="subheading text-xs text-muted">[order.phone]</div>
+                    </div>
+                    <div class="content d-flex flex-col">
+                        <div class="orderNotes"><textarea class="bg-light text-xs">[order.notes]</textarea></div>
+                        <div class="totals">
+                            <div class="heading text-sm-bold">Order Total</div>
+                            <div class="subheading text-sm text-muted">R[order.orderTotal]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons d-flex flex-center flex-wrap flex-align">
+                    <button class=" btn-p-md bg-darkbrown text-white">Test</button>
+                    <button class=" btn-p-md bg-darkbrown text-white">Test</button>
+                    <button class=" btn-p-md bg-darkbrown text-white">Test</button>
+                    <button class=" btn-p-md bg-darkbrown text-white">Test</button>
+                    <button class=" btn-p-md bg-darkbrown text-white">Test</button>
+                </div>
             </div>
         </div>
+        <div class="noMoreOrders text-center text-md-bold text-muted">There are no more orders to load for today! <i class="far fa-check-circle"></i></div>
     </div>
 
 </template>
   
   <script>
-      const State = ActiveJS.State;
+    const State = ActiveJS.State;
+    const Router = ActiveJS.Router;
     ActiveJS.newController('ordersDashboard', {
       el: "#app",
       Data() {
@@ -47,11 +70,43 @@
         }
       },
       _Mounted() {
-        this.orders = State.Get("getLiveOrders");
+        //* order the orders by stared
+        this.orderByStared(State.Get("getLiveOrders"));
       },
       methods: {
+        starOrder(orderIndex, value) {
+            let orderUId = this.orders[orderIndex].orderUId;
+            let val = false;            
+            if (value.indexOf("true") > -1) {
+                val = Boolean(value.replace(" ", ""));
+            }
+            else {
+                val = !Boolean(value.replace(" ", ""));
+            }
+
+            State.Commit("starOrder", {uid: orderUId, value: val});
+
+            //* update orders
+            this.orderByStared(State.Get("getLiveOrders"));
+        },
         showModelForOrder(orderIndex) {
             
+        },
+        navbarRoute(route) {
+            Router.route(route);
+        },
+        logouUser() {
+            alert("Logging Out");
+        },
+        orderByStared(orders) {
+            let stared = [];
+            let normal = [];
+            orders.forEach(order => {
+                if (order.stared) stared.push(order);
+                else normal.push(order);
+            });
+
+            this.orders = [...stared, ...normal];
         }
       }
     });
@@ -68,49 +123,79 @@
 
     #ordersDashboard .ordersWrapper {
         width: 100%;
-        height: 90%;
         margin-top: 5%;
     }
 
-    #ordersDashboard .ordersWrapper .liveOrderHeader {
-        width: 100%;
-        padding: 1%;
-        margin-bottom: 15px;
+    #ordersDashboard .noMoreOrders {
+        padding: 5% 0;
     }
 
     #ordersDashboard .ordersWrapper .liveOrder {
-        width: 100%;
-        padding: 20px 1%;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        border-left-width: 3px;
-        border-left-style: solid;
+        min-width: 350px;
+        max-width: 350px;
+        margin-top: 2%;
+        margin-right: 2%;
+        border-radius: 10px;
+        position: relative;
     }
 
-    .item {
+    #ordersDashboard .ordersWrapper .liveOrder .other {
+        padding: 10px;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .other .orderUId {
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .other .status {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .actionTab {
+        padding: 10px;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .actionTab .dateTime {
+        width: 80%;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .actionTab .actions {
+        width: 20%;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent {
+        padding: 10px;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent .header {
+        padding: 10px 0;
+    }
+
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent .content {
         
     }
 
-    .item.uid {
-        width: 5%;
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent .content .orderNotes {
+        width: 100%;
     }
-    .item.name {
-        width: 20%;
+
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent .content .orderNotes  textarea{
+        width: 100%;
+        height: 100px;
+        padding: 5px;
+        border-radius: 10px;
     }
-    .item.phone {
-        width: 10%;
+
+    #ordersDashboard .ordersWrapper .liveOrder .orderContent .content .totals {
+        padding: 10px 0;
     }
-    .item.notes {
-        width: 20%;
+
+    #ordersDashboard .ordersWrapper .liveOrder .buttons {
+        padding: 10px;
     }
-    .item.unit {
-        width: 20%;
-    }
-    .item.total {
-        width: 10%;
-    }
-    .item.status {
-        width: 5%;
-    }
+
   </style>
   
