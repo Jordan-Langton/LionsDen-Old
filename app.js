@@ -44,8 +44,9 @@ createApp({
     DOM_MINIPULATION: false,
   },
   "routes": [
-    {path: '/StoreFront', handler: './views/store/StoreFront.html', animate: ''},
+    {path: '/dashboard-orders:uid=false', handler: './admin/ordersDashBoard.html', animate: ''},
+    {path: '/StoreFront', handler: './views/store/StoreFront.html', animate: ''}
   ]
 }, () => {
-  Router.route("/StoreFront");
+  Router.route("/dashboard-orders");
 });
