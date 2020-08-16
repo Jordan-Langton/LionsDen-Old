@@ -1,0 +1,134 @@
+<template>
+    <div id='mainWrapper' class="bg-light">
+        <div id="navWrapper" class="d-flex flex-row bg-white flex-align">
+            <div id="brandWrapper" class="d-flex flex-row flex-align">
+                <img id="logo" src="src/images/content/logo.png"/>
+
+                <p id="brandName" class="font-SegoeUI">Lion's Den Biltong</p>
+            </div>
+
+            <div id="nav" class="d-flex flex-row flex-end">
+                <div class="navIcon" style='background-image: url("src/images/content/icons/logout.png")'></div>
+
+                <div class="navIcon" style='background-image: url("src/images/content/icons/user.png")'></div>
+
+                <div class="navIcon" style='background-image: url("src/images/content/icons/buy.png")'></div>
+            </div>
+        </div>
+
+        <div id="landingPageContentWrapper">
+            <img id="mediaSecondary" src="src/images/content/landingMediaSecondary.jpg"/>
+
+            <h1 id="megatron">
+                SLICED BEEF BILTONG
+            </h1>
+
+            <button id="browse">
+                BROWSE
+            </button>
+
+            <img id="mediaPrimary" src="src/images/content/landingMediaPrimary.jpg"/>
+
+            <div id="promotionSlider" style='background-image: url("src/images/content/icons/promotionSlider.png")'></div>
+        </div>
+    </div> 
+</template>
+  
+<script>
+ActiveJS.newController('storeFront', {
+    el: "#app",
+    Data() {
+        return {
+            counter: 0,
+        }
+        },
+        methods: {
+        clickButton() {
+            this.counter++;
+        }
+    }
+});
+</script>
+  
+<style>
+
+
+#mainWrapper
+{
+    height: 100%;
+}
+
+#mainWrapper #navWrapper
+{
+    width:  100%;
+    height: 35px;
+
+    position: relative;
+}
+
+#mainWrapper #navWrapper #brandWrapper
+{
+    flex-basis: 50%;
+}
+
+#mainWrapper #navWrapper #brandWrapper #logo
+{
+    width: 24px;
+    margin-left: 10px;
+}
+
+#mainWrapper #navWrapper #brandWrapper #brandName
+{
+    font-size:      10px;
+    font-weight:    700;
+
+    margin-top:     -2px;
+    margin-left:    6px;
+
+}
+
+#mainWrapper #navWrapper #nav
+{
+    flex-basis: 50%;
+}
+
+#mainWrapper #navWrapper #nav .navIcon
+{
+    width:  15px;
+    height: 15px;
+
+    background-size:    100%;
+    background-repeat:  no-repeat;
+}
+
+#mainWrapper #navWrapper #nav .navIcon:nth-child(2)
+{
+    margin: 0 16px;
+}
+
+#mainWrapper #navWrapper #nav .navIcon:nth-child(3)
+{
+    margin-right: 10px;
+}
+
+#mainWrapper #landingPageContentWrapper
+{
+
+}
+
+#mainWrapper #landingPageContentWrapper #mediaSecondary
+{
+    width: 300px;
+}
+
+#mainWrapper #landingPageContentWrapper #mediaPrimary
+{
+    width: 300px;
+}
+
+#mainWrapper #landingPageContentWrapper #promotionSlider
+{
+    width: 50px;
+}
+
+</style>

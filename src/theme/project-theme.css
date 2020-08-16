@@ -179,11 +179,12 @@ body{
   --white: #ffffff;
   --darkbrown: #251e1e;
   --lightdark: #898989;
-  --light: #f0f0f0;
+  --light: #F9F9F9;
 }
 
 /*? ======== FONTS ======== ?*/
 .font-NotoSans {font-family: NotoSans;}
+.font-SegoeUI {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 
 
 /*? ======== SCROLLBAR ======== ?*/
